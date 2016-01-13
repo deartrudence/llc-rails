@@ -123,11 +123,13 @@
 
     <section class="slide" data-markdown>
       <script type="text/template">
-        #1. Your computer speaks a different language
+        #Creating the application
 
-        This is how your computer wishes you could speak to it:
+        First, let’s open a terminal:
 
-        ![](framework/img/workshop/machine-language.jpg)
+        | Windows  |  Mac |
+        |---|---|
+        |Click Start and look for Command Prompt, then click Command Prompt with Ruby on  |Open Spotlight, type Terminal and click the Terminal application. |
       </script>
     </section>
 
@@ -223,26 +225,16 @@
 
     <section class="slide irb" data-markdown>
       <script type="text/template">
-        #Interactive Ruby (IRB)
+        #Creating the application
 
-        The *console* is an interactive tool used to test and debug code.
-        Let&rsquo;s open IRB in the *console*:
+        First, let’s open a terminal:
 
         | Windows  |  Mac |
         |---|---|
-        | Open Interactive Ruby from the Ruby section of your Start Menu.  | Open **Applications > Utilities > Terminal**. <br>Type `irb` and hit enter. |
+        |Click Start and look for Command Prompt, then click Command Prompt with Ruby on  |Open Spotlight, type Terminal and click the Terminal application. |
 
-        Now that it's open and running in the console, you'll see this:
-        ```ruby
-        irb(main):001:0>
-        ```
-
-        Type your instructions at the end of the line (with the quotes):
-
-        ```ruby
-        irb(main):001:0> "Hello!"
-        ```
-        The command (instruction) you input will get *evaluated* and a value is returned back to you.
+        Navigate to File directory
+        #TODO explain this for Mac & Windows
       </script>
     </section>
 
@@ -252,250 +244,263 @@
 
     <section class="slide" data-markdown>
       <script type="text/template">
-        #Ruby can do math
+        #Creating the application
 
-        Let's try some examples in the console.
-        Remember to input your commands after this line: `irb(main):001:0>`
+        Next, type these commands in the terminal:
 
-        Also, numbers don't need quotes like in the previous example. (More on this soon.)
 
         ```
-        irb(main):001:0> 2 + 2
-        => 4
+        > mkdir projects
         ```
+        You can verify that a directory named **projects** was created by running the list command: `ls`. You should see the **projects** directory in the output. Now you want to change the directory you are currently in to the **projects** folder by running:
 
         ```
-        irb(main):001:0> 2 * 15
-        => 30
+        > cd projects
         ```
-
-        ```
-        irb(main):001:0> 1 / 2
-        => 0
-        ```
-        >Why is `1 / 2 = 0`?
 
       </script>
     </section>
 
     <section class="slide" data-markdown>
       <script type="text/template">
-        #Data Types
+        #Creating the application
 
-        We just used the *integer* number **class** but there are many more.
+        You can verify you are now in an empty directory or folder by again running the `ls` command.
 
-        * Integer/Fixnum (whole numbers)
-        * Float (numbers containing decimals)
-        * String (words, sentences, literal text) - requires quotes
-        * Boolean (`True`, `False`)
-        * [and many more!](https://en.wikibooks.org/wiki/Ruby_Programming/Data_types)
-
-        To figure out the type, add `.class` after the data value.
+        Now you want to create a new app called **railsgirls** by running:.
 
         ```
-        irb(main):001:0> "hello".class
-        => String
+        > rails new railsgirls
+        ```
 
-        irb(main):001:0> 42.class
-        => Fixnum
+        This will create a new app in the folder **railsgirls**, so we again want to change the directory to be inside of our rails app by running:
 
-        irb(main):001:0> 3.14159.class
-        => Float
+        ```
+        > cd railsgirls
         ```
       </script>
     </section>
     <section class="slide" data-markdown>
       <script type="text/template">
-        #Fun with Data Types
+        #Running the application
 
-        Let's try some more examples in `irb`.
+        If you run ls inside of the directory you should see folders such as `app` and `config`. You can then start the rails server by running:
 
-        Integer (whole numbers)
         ```
-        irb(main):001:0> 462 * 86
-        => 39832
+        > rails server
         ```
-        Float (numbers containing decimals)
-        ```
-        irb(main):001:0> 3.2 / 2
-        => 1.6
-        ```
-        String (words, sentences, literal text)
-        ```
-        irb(main):001:0> "ladies" + "learning" + "code"
-        => "ladieslearningcode"
-        ```
-        Boolean (`True`, `False`)
-        ```
-        irb(main):001:0> true
-        => true
-        ```
+
+        Open http://localhost:3000 in your browser.
+
+        ![](framework/img/workshop/RunServer.png)
+
+        You should see “Welcome aboard” page, which means that the generation of your new app worked correctly.
+
       </script>
     </section>
 
     <section class="slide no-bullet-list" data-markdown>
       <script type="text/template">
-        #Functions
+        #Stopping the application
 
-        * Functions are bundles of instructions that can be re-used
-          * Defined by wrapping the instructions between `def` and `end`
-          * Directly after `def` is the name of the function
-        * Function can take **arguments** and **return** values
-          * After the function name, **arguments** are defined in parentheses, `()`
-        * Functions always `return` 1 thing or a set of things
+        Notice in this window the command prompt is not visible because you are now in the Rails server, the command prompt looks like this:
+
+        ```
+        => Booting WEBrick
+        => Rails 4.2.5 application starting in development on http://localhost:3000
+        => Run rails server -h for more startup options
+        => Ctrl-C to shutdown server
+        [2016-01-12 18:10:44] INFO  WEBrick 1.3.1
+        [2016-01-12 18:10:44] INFO  ruby 2.2.1 (2015-02-26) [x86_64-darwin14]
+        [2016-01-12 18:10:44] INFO  WEBrick::HTTPServer#start: pid=46216 port=3000
+        ```
+        When the command prompt is not visible you cannot execute new commands. If you try running `cd` or another command it will not work. To return to the normal command prompt:
+
+        Hit `Ctrl`+`C` in the terminal to quit the server.
+
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        #Create Idea scaffold
+
+        We’re going to use Rails’ **scaffold** functionality to generate a starting point that allows us to list, add, remove, edit, and view things; in our case ideas.
 
         ```ruby
-        def functionName(arg1, arg2)
-          set of instructions
-          return answer
-        end
+        rails generate scaffold idea name:string description:text picture:string
         ```
-      </script>
-    </section>
 
-    <section class="slide" data-markdown>
-      <script type="text/template">
-        #Define the function
-
-        This doesn't actually run the code.  We're just telling the computer what to expect.
-
-        In the below example, the `add` function takes `a` and `b` as arguments and will **return** the result.
+        The scaffold creates new files in your project directory, but to get it to work properly we need to run a couple of other commands to update our database and restart the server.
 
         ```ruby
-        irb(main):001:0> def add(a, b)
-        ...     return a + b
-        ...     end
-        ...
+        bin/rake db:migrate
+        rails server
         ```
+
+        Open http://localhost:3000/ideas in your browser.
+
+        Hit `Ctrl`+`C` to quit the server again when you’ve clicked around a little.
       </script>
     </section>
 
     <section class="slide" data-markdown>
       <script type="text/template">
-        #Call the function
+        #Design
+        ## Twitter Bootstrap
 
-        After *defining* the fuction, *call* it by typing the name of the function, `add()` and substituting values where the arguments were defined `(a,b)`.
+        The app doesn’t look very nice yet. Let’s do something about that. We’ll use the Twitter Bootstrap project to give us nicer styling really easily.
+
+        Open app/views/layouts/application.html.erb in your text editor and above the line
 
         ```ruby
-        irb(main):001:0> add(1, 2)
-        => 3
+        <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
         ```
 
-        The benefit is now we can sub in any 2 numbers without having to rewrite the code
+        add
 
         ```ruby
-        irb(main):001:0> add(3, 4)
-        => 7
+        <link rel="stylesheet" href="//railsgirls.com/assets/bootstrap.css">
+        <link rel="stylesheet" href="//railsgirls.com/assets/bootstrap-theme.css">
         ```
-        We won't create our own functions in today's exercises, but we'll use those provided by ruby and its libraries.
+        and replace
+
+        ```
+        <%= yield %>
+        ```
+        with
+        ```
+        <div class="container">
+          <%= yield %>
+        </div>
+        ```
       </script>
     </section>
     <section class="slide" data-markdown>
       <script type="text/template">
-        #Outputting values: `puts`
+        #Design
+        ## Navigation & Footer
 
-        The `puts` **function** outputs values to the screen.
+        Let’s also add a navigation bar and footer to the layout. In the same file, under <body> add
 
-        Reminder, use of quotes for *string* data types.
 
-        ```
-        irb(main):001:0> puts "Hello World!"
-        Hello World!
-        => nil
-        ```
-
-        ```
-        irb(main):001:0> puts 2 + 2
-        4
-        => nil
-        ```
-      </script>
-    </section>
-
-    <section class="slide" data-markdown>
-      <script type="text/template">
-        #Outputting values: `print`
-
-        The function `print` can also be used to output values.
-
-        The difference between `puts` and `print` is `puts` adds a new line to end of the output and `print` does not.
-
-        ```
-        irb(main):001:0> puts 2 + 2
-        4
-        => nil
-        ```
-        ```
-        irb(main):001:0> print 2 + 2
-        4=> nil
-        ```
-        Notice the `nil` remains on the same line as the response?
-
-        Let's try it in IRB!
-        ```
-        irb(main):001:0> print "Hello World!"
-        Hello World! => nil
-        ```
-        ```
-        irb(main):001:0> print 2 + 2
-        4 => nil
+        ```html
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">The Idea app</a>
+            </div>
+            <div class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/ideas">Ideas</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
         ```
 
-      </script>
-    </section>
+        and before </body> add
+        ```
+        <footer>
+          <div class="container">
+            Rails Girls 2015
+          </div>
+        </footer>
+        ```
 
-    <section class="slide" data-markdown>
-      <script type="text/template">
-        #What's nil? It's nothing, don't worry.
-
-        Remember how **Functions** always return 1 thing?
-
-        Well, `print` and `puts` are functions.  However, since they only print to the screen they *technically* don't return anything.
-
-        Since Ruby always needs to return something, it returns `nil`, which is computer for **nothing**.
-
-        ![](http://prajer.org/nothing.gif)
+        somehow add the script
+`<script src="//railsgirls.com/assets/bootstrap.js"></script>`
 
       </script>
     </section>
 
     <section class="slide" data-markdown>
       <script type="text/template">
-        #Concatenation
+        #Design
+        ##Styling
 
-        Ruby comes with a whole set of predefined functions.  These are sets of code that are so regularly used by most programmers that it makes sense for them to be part of the programming language itself.
+        Now let’s also change the styling of the ideas table. Open app/assets/stylesheets/application.css and at the bottom add
 
-        One such function is **concatenation**. With this we can "add" strings together. We call this function using the `+` symbol.
+        ```css
+        body { padding-top: 100px; }
+        footer { margin-top: 100px; }
+        table, td, th { vertical-align: middle; border: none; }
+        th { border-bottom: 1px solid #DDD; }
+        ```
+
+        Now make sure you saved your files and refresh the browser to see what was changed. You can also change the HTML & CSS further.
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        #Adding Picture Uploads
+
+        We need to install a piece of software to let us upload files in Rails.
+
+        Open `Gemfile` in the project directory using your text editor and under the line
 
         ```
-        irb(main):001:0> print "Ladies " + "Learning " + "Code"
-        Ladies Learning Code => nil
+        gem 'sqlite3
+        ```
+        add
+        ```
+        gem 'carrierwave'
         ```
 
-        But what if we try to join a string and a number?
+        Hit `Ctrl`+`C` in the terminal to quit the server.
+
+        In the terminal run:
+        ```
+        > bundle
+        ```
+
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        #Adding Picture Uploads
+
+        Now we can generate the code for handling uploads. In the terminal run:
+
+        ```
+        > rails generate uploader Picture
+        ```
+        Please start the rails server now.
+        ```
+        > rails server
+        ```
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        #Adding Picture Uploads
+
+        Open app/models/idea.rb and under the line
+        ```ruby
+        class Idea < ActiveRecord::Base
+        ```
+        add
+        ```
+        mount_uploader :picture, PictureUploader
+        ```
+        Open app/views/ideas/_form.html.erb and change
 
         ```ruby
-        irb(main):001:0> print 2 + "2"
-        TypeError: String cannot be coerced into Fixnum
-
+        <%= f.text_field :picture %>
         ```
-      </script>
-    </section>
-
-    <section class="slide" data-markdown>
-      <script type="text/template">
-        #Why did that error happen?
-
-        Ruby needs to know the **type** of data the value is to figure out how to work with it.  Let&rsquo;s look at that error again.
-
+        to
         ```ruby
-        irb(main):001:0> print 2 + "2"
-        TypeError: String cannot be coerced into Fixnum
+        <%= f.file_field :picture %>
         ```
-
-        * The first `2`, inside of `print 2 + "2"` is an integer.
-        * `"2"` enclosed in the quotes, is a **string** type, or "literal text".
-        * Ruby can&rsquo;t add a number and string, so it spits out an error.
 
       </script>
     </section>
@@ -506,54 +511,55 @@
 
     <section class="slide" data-markdown>
       <script type="text/template">
-        #Typecasting: Strings to Numbers
+        #Adding Picture Uploads
 
-        Ruby can convert the string `"2"` into a number and *change the type*.
+        In your browser, add new idea with a picture. When you upload a picture it doesn’t look nice because it only shows a path to the file, so let’s fix that.
 
-        To change the string to an integer (whole number) using the `.to_i` function.  Try it in your console.
-
+        Open app/views/ideas/show.html.erb and change
         ```
-        irb(main):001:0> print 2 + "2".to_i
-        4 => nil
+        <%= @idea.picture %>
         ```
-        `to_i` is another predefined function in Ruby.
-        It converts a string to an integer.
+        to
+        ```
+        <%= image_tag(@idea.picture_url, :width => 600) if @idea.picture.present? %>
+        ```
+
+        Now refresh your browser to see what changed.
       </script>
     </section>
 
     <section class="slide" data-markdown>
       <script type="text/template">
-        #Dot Notation
+        #Finetune the Routes
 
-        The most common way we call functions is with **dot notation**.
+        Open http://localhost:3000 . It still shows the “Welcome aboard” page. Let’s make it redirect to the ideas page.
 
-        In other words, add a period, then the function name *after* the object you want to call it on.
-
-        For example:
+        Open `config/routes.rb` and after the first line add
 
         ```ruby
-        "5".to_i
+        root :to => 'ideas#index'
         ```
       </script>
     </section>
 
     <section class="slide" data-markdown>
       <script type="text/template">
-        #Numbers
+        #Create State Page in your App
 
-        Now try dividing 2 numbers and see what value gets returned:
+        Lets add a static page to our app that will hold information about the author of this application — you!
 
         ```
-        irb(main):001:0> print 1 / 2
-        0 => nil
+        rails generate controller pages info
         ```
-        This happens because Ruby sees 2 integers and will return an integer. Integer **classes** don&rsquo;t have decimal parts, so it must be converted to **floats**, since this number **class** can handle decimals.
 
-        Use dot notation and the `.to_f` function.
+        This command will create you a new folder under `app/views` called `/pages` and under that a file called `info.html.erb` which will be your info page.
+
+        It also adds a new simple route to your routes.rb.
+
         ```
-        irb(main):001:0> print 1.to_f / 2.to_f
-        0.5 => nil
+        get "pages/info"
         ```
+        Now you can open the file `app/views/pages/info.html.erb` and add information about you in HTML. To see your new info page, take your browser to http://localhost:3000/pages/info or, if you are a cloud service user, append ‘/pages/info’ to your preview url.
 
       </script>
     </section>
