@@ -95,7 +95,7 @@
       <script type="text/template">
         #Programming language
 
-        >It's made up of *simple elements*, that when *combined together*, are used to write a set of *instructions* that the computer then breaks down and interprets as its own language.
+        >It&rsquo;s made up of *simple elements*, that when *combined together*, are used to write a set of *instructions* that the computer then breaks down and interprets as its own language.
 
         Programming languages have syntax and "grammar rules", just like human languages.
       </script>
@@ -147,7 +147,7 @@
         * Ruby comes by default on Mac OSX and the above link is for different versions!
       1. Ruby on Rails 4.x.x installed
         * http://installrails.com
-      1. Text editor - today we'll be using **[Atom](https://atom.io/)**
+      1. Text editor - today wecll be using **[Atom](https://atom.io/)**
       1. Terminal/Console
       1. [Learner files](https://github.com/ladieslearningcode/llc-intro-to-ruby-data/archive/master.zip) (contains exercise and solution files)
       </script>
@@ -294,6 +294,67 @@
     <section class="slide" data-markdown>
       <script type="text/template">
         #Routing
+
+        Routing is a system that translates incoming requests from the browser (HTTP methods - GET, POST, PUT and DELETE) in order to return the intended response (index, show, new, edit, create, update, delete)
+
+
+        The conventional way to structure your web application in Rails is using REST (REpresentational State Transfer):
+
+        * Structure routes around resources (you can think of resources as models)
+        * Each route does a small set of operations on a resource
+
+        <table><!-- .element: style="font-size:24px; width: 100%" -->
+          <tr>
+            <td>HTTP Method</td>
+            <td>Path</td>
+            <td>Action</td>
+            <td>Used for</td>
+          </tr>
+          <tr>
+            <td>GET</td>
+            <td>/ideas</td>
+            <td>index</td>
+            <td>displaying a list of all ideas</td>
+          </tr>
+          <tr>
+            <td>GET</td>
+            <td>/ideas/new</td>
+            <td>new</td>
+            <td>returning an HTML form for creating a new idea</td>
+          </tr>
+          <tr>
+            <td>POST</td>
+            <td>/ideas</td>
+            <td>create</td>
+            <td>creating a new idea</td>
+          </tr>
+          <tr>
+            <td>GET</td>
+            <td>/photos/:id</td>
+            <td>show</td>
+            <td>displaying a specific photo</td>
+          </tr>
+          <tr>
+            <td>GET</td>
+            <td>/photos/:id/edit</td>
+            <td>edit</td>
+            <td>returning an HTML form for editing a specific photo</td>
+          </tr>
+          <tr>
+            <td>PUT</td>
+            <td>/photos/:id</td>
+            <td>update</td>
+            <td>updating a specific photo</td>
+          </tr>
+          <tr>
+            <td>DELETE</td>
+            <td>/photos/:id</td>
+            <td>destroy</td>
+            <td>destroy deleting a specific photo</td>
+          </tr>
+        </table>
+
+
 
       </script>
     </section>
