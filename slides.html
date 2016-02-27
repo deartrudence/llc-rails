@@ -250,7 +250,7 @@
       <script type="text/template">
         #What is a View
 
-        The Model is the Visual Layer
+        The View is the Visual Layer
 
         * the HTML & CSS
         * Embedded Ruby files .html.erb files allow insertion of ruby code into HTML
@@ -272,11 +272,11 @@
       <script type="text/template">
         #What is a Controller
 
-        The Model is the Management Layer
+        The Controller is the Management Layer
 
         * Gets data from the Model and makes it available to the View
         * Takes care of the control flow of the logic (order in which tasks get done)
-        * Decides what Views get displayed
+        * Decides what data gets displayed in each View
       </script>
     </section>
 
@@ -311,7 +311,7 @@
 
         These conventions allow for *Rails Magic*
 
-        Because Rails knows exactly where to find things and what they will be called in can do a lot of things behind the scenes
+        Because Rails knows exactly where to find things and what they will be called it can do a lot of things behind the scenes
 
         The downfall: if you pluralize or capitalize the wrong thing everything falls apart
 
@@ -579,7 +579,9 @@
         ```
 
         somehow add the script
-`<script src="//railsgirls.com/assets/bootstrap.js"></script>`
+        ```
+        <script src="//railsgirls.com/assets/bootstrap.js"></script>
+        ```
 
       </script>
     </section>
