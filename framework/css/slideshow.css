@@ -3,7 +3,7 @@
 	@author Lea Verou
 	@version 1.0
 
-	Don't alter - CSSS slide deck needs it to work 
+	Don't alter - CSSS slide deck needs it to work
 	https://github.com/LeaVerou/csss
  */
 
@@ -353,4 +353,9 @@ iframe.csss-import.show {
 
 .presenter .slide:target > .presenter-notes {
 	display: block;
+}
+
+.rg-logo {
+  width: 185px !important;
+  max-height: 185px;
 }

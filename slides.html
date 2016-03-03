@@ -52,7 +52,7 @@
       </div>
       <footer>
         <a class="left" rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" src="framework/img/cc-by-nc.png" /></a>
-        <p class="left">Content created by <a href="https://twitter.com/EssefBeck" target="_blank">Sarah Beck</a> and <a href="https://twitter.com/dear_trudence" target="_blank">Trudy MacNabb</a> for <a prefix="cc: http://creativecommons.org/ns#" href="http://ladieslearningcode.com" property="cc:attributionName" rel="cc:attributionURL">Ladies Learning Code</a></p>
+        <p class="left">Content created by <a href="https://twitter.com/leeshapton" target="_blank">Leanne Shaption</a> and <a href="https://twitter.com/dear_trudence" target="_blank">Trudy MacNabb</a> for <a prefix="cc: http://creativecommons.org/ns#" href="http://ladieslearningcode.com" property="cc:attributionName" rel="cc:attributionURL">Ladies Learning Code</a></p>
         <p class="right">Use the left <span class="arrow">&#8592;</span> and right <span class="arrow">&#8594;</span> arrow keys to navigate</p>
       </footer>
     </section>
@@ -575,7 +575,7 @@
 
         We’ll use *Twitter Bootstrap* to give us nicer styling really easily.
 
-        Open app/views/layouts/application.html.erb in your text editor and above the line
+        Open `app/views/layouts/application.html.erb` in your text editor and above the line
 
         ```ruby
         <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
@@ -652,7 +652,7 @@
         #Design
         ##Styling
 
-        Now let’s also change the styling of the ideas table. Open app/assets/stylesheets/application.css and at the bottom add
+        Now let’s also change the styling of the ideas table. Open `app/assets/stylesheets/application.css` and at the bottom add
 
         ```css
         body { padding-top: 100px; }
@@ -711,7 +711,7 @@
       <script type="text/template">
         #Adding Picture Uploads
 
-        Open app/models/idea.rb and under the line
+        Open `app/models/idea.rb` and under the line
         ```ruby
         class Idea < ActiveRecord::Base
         ```
@@ -719,7 +719,7 @@
         ```
         mount_uploader :picture, PictureUploader
         ```
-        Open app/views/ideas/_form.html.erb and change
+        Open `app/views/ideas/_form.html.erb` and change
 
         ```ruby
         <%= f.text_field :picture %>
@@ -742,7 +742,7 @@
 
         In your browser, add new idea with a picture. When you upload a picture it doesn’t look nice because it only shows a path to the file, so let’s fix that.
 
-        Open app/views/ideas/show.html.erb and change
+        Open `app/views/ideas/show.html.erb` and change
         ```
         <%= @idea.picture %>
         ```
@@ -791,18 +791,96 @@
       </script>
     </section>
 
-
-
-
-
-
-    <section class="slide title ruby-background" data-markdown>
+    <section class="slide" data-markdown>
       <script type="text/template">
-        <h1 class="heading-bg">
-          <span>And now for something<br>new and shiny!</span>
-        </h1>
+        #Adjust the Application Layout
 
-        Source: <!-- .element: class="source note" -->[http://photo.elsoar.com](http://photo.elsoar.com)
+        Open `app/assets/stylesheets/application.css`, replace the line:
+
+        ```
+        body { padding-top: 100px; }
+        ```
+        to
+        ```
+        body { padding-top: 60px; }
+        ```
+
+        This is where you change the css for the whole application.
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        #Refine the Navigation
+
+        Open `app/views/layouts/application.html.erb`, under the line:
+
+        ```
+        <li class='active'><a href='/ideas'>Ideas</a></li>
+        ```
+        add
+        ```
+        <li ><%= link_to 'New Idea', new_idea_path %></li>
+        ```
+
+        The `link_to` helper is the Rails Way of adding a link
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        #Design the idea list
+
+        Open `app/views/ideas/index.html.erb`.
+
+        Replace all the lines with :
+        ```
+        <h1>Listing ideas</h1>
+
+        <% @ideas.in_groups_of(3) do |group| %>
+          <div class="row">
+            <% group.compact.each do |idea| %>
+              <div class="col-md-4">
+                <%= image_tag idea.picture_url, width: '100%' if idea.picture.present?%>
+                <h4><%= link_to idea.name, idea %></h4>
+                <%= idea.description %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+        ```
+
+      </script>
+    </section>
+
+    <section class="slide" data-markdown>
+      <script type="text/template">
+        #Design the idea details page
+
+        Open `app/views/ideas/show.html.erb`.
+
+        Replace all the lines with :
+
+        ```
+        <p id="notice"><%= notice %></p>
+
+        <div class="row">
+          <div class="col-md-9">
+            <%= image_tag(@idea.picture_url, width: '100%') if @idea.picture.present? %>
+          </div>
+
+          <div class="col-md-3">
+            <p><b>Name: </b><%= @idea.name %></p>
+            <p><b>Description: </b><%= @idea.description %></p>
+            <p>
+              <%= link_to 'Edit', edit_idea_path(@idea) %> |
+              <%= link_to 'Destroy', @idea, data: { confirm: 'Are you sure?' }, method: :delete %> |
+              <%= link_to 'Back', ideas_path %>
+            </p>
+          </div>
+        </div>
+        ```
+
       </script>
     </section>
 
@@ -829,9 +907,22 @@
       </script>
     </section>
 
+    <section class="slide centered rg" data-markdown>
+      <script type="text/template">
+        #Community Support
+
+        ##Rails Girls TO
+        ## [railsgirlsto.com](http://railsgirlsto.com/)
+        <img class="rg-logo" src="framework/img/workshop/RailsGirlsLogo.jpeg" alt="Rails Girls logo">
+
+        ![A-Ok](http://sugarscape.cdnds.net/15/43/1445608757-g.gif) <!-- .element: style="width: 50%" -->
+      </script>
+    </section>
+
     <section class="slide centered" data-markdown>
       <script type="text/template">
         #Questions?
+
 
         ![A-Ok](http://ak-hdl.buzzfed.com/static/2015-08/24/10/imagebuzz/webdr11/anigif_optimized-23047-1440425651-7.gif) <!-- .element: style="width: 50%" -->
       </script>
